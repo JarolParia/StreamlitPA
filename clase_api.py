@@ -2,7 +2,7 @@ import requests
 
 class ClaseAPI:
 
-    def __init__(self, url_base = 'http://localhost:5000'):
+    def __init__(self, url_base = 'https://www.datos.gov.co/resource/2pnw-mmge.json'):
         self.url_base = url_base
 
     def consultar(self, limite):
@@ -11,8 +11,7 @@ class ClaseAPI:
             respuesta = requests.get(endpoint)
             respuesta.raise_for_status()
             datos = respuesta.json()
+            return datos[:limite]
         except requests.exceptions.RequestException as e:
             print(f'Error en la consulta: {e}')
             return None
-
-clasesita = ClaseAPI.consultar(5)

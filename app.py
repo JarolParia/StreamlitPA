@@ -1,22 +1,15 @@
 import streamlit as st
-from conexion import conectionBd
 
-def main():
-    db = conectionBd("StreamAPP")
-    st.title("Hello, Streamlit!")
-    st.sidebar.header("configuracion")
-    persona = st.sidebar.text_input("Ingresa tu nombre","Persona")
-    st.title(f'Hola {persona}!')
-    st.header("Mis datos:")
-    usuarios = list(db["usuarios"].find({},{"_id":0}))
+st.title("Mi Aplicación de Datos")
+st.sidebar.header("Configuración")
+persona = st.sidebar.text_input("Escribe tu nombre", "Persona")
+st.header(f"Bienvenido, {persona}!")
 
-    if usuarios:
-        st.dataframe(usuarios)
-    else:
-        st.write("No hay usuarios registrados.")
-        
+st.markdown("""
+### Fuentes de información disponibles:
+- **Base de Datos**: Registros en MongoDB Atlas
+- **API Externa**: Consumo de datos en tiempo real  
+- **CSV Local**: Lectura de archivos estáticos
 
-
-
-if __name__ == "__main__":
-    main()
+Usa el menú lateral para navegar.
+""")
